@@ -55,4 +55,4 @@ Write-Host "Création de la zone Reverse Lookup '$reverseZoneName'..."
 Add-DnsServerReverseZone -NetworkId ($reverseZoneName.Split('/'))[0] -Name $reverseZoneName -ReplicationScope Forest
 
 
-Write-Host "Ma configutation du serveur DNS s'est correctement terminée !"
+Write-Host "La configutation du serveur DNS s'est correctement terminée !"
