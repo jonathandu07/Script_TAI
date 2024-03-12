@@ -22,3 +22,9 @@ Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses $dnsServe
 # Attendre quelques secondes pour que les changement prennent effet
 Start-Sleep -Second 10
 
+
+# Renommer le PC en SRV-DNS
+Write-Output "Renommage du PC en SRV-DNS..."
+Rename-Computer -NewName "SRV-DNS" -Force
+
+
