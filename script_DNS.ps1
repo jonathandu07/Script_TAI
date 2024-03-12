@@ -18,3 +18,7 @@ New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress $ipv4Address -Prefix 24 -
 Write-Output "Configuration des serveurs DNS..."
 Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses $dnsServer
 
+
+# Attendre quelques secondes pour que les changement prennent effet
+Start-Sleep -Second 10
+
