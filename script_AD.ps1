@@ -37,3 +37,13 @@ Start-Sleep -Seconds 20
 # Créer l'unité d'organisation (OU "PC-Clients")
 Write-Host "Création de l'unité d'organisation PC-Clients..."
 New-ADOrganizationalUnit -Name "PC-Clients" -Path ("DC=" + ($domainName -split '\.' | Select-Object -First 2) -join ', DC=')
+
+
+# Créer 10 utilisateurs avec le rôle administrateur pour les PC membres de l'OU "PC-Clients"
+Write-Host "Création des utilisateurs et ajout aux PC-Clients..."
+for ($i = 1; $i -le 10; $i++) {
+    $userName = "User$i"
+    $userPassword = ConvertTo-SecureString -String "M02p@ss3$i" -AsPlainText -Force
+    $newUser = New-ADUser -Name $userName -AccountPassword $userPassword -UserPrincipalName $userPrincipal -Enabled $true -PassThru
+}
+
