@@ -40,7 +40,8 @@ $ScopeId = @(, $ScopeStartAddress, $ScopeSubnetMask)
 # Création d'une nouvelle étendue DHCP
 try {
     Add-DhcpServerv4Scope -Name "LAN-Scope" -StartRange $ScopeStartAddress -EndRange $ScopeEndAddress -SubnetMask $ScopeSubnetMask
-} catch {
+}
+catch {
     Write-Error $_.Exception.Message
     Exit 1
 }
@@ -49,7 +50,8 @@ try {
 # Configuration des options d'étendue DHCP
 try {
     Set-DhcpServerv4OptionValue -ScopeId $ScopeId -Router $DefaultGateway -DnsServer $PrimaryDNSServer, $SecondaryDNSServer -DnsDomainName $DnsDomainName
-} catch {
+}
+catch {
     Write-Error $_.Exception.Message
     Exit 1
 }
@@ -58,7 +60,8 @@ try {
 # Configuration de la durée de bail d'adresse IP
 try {
     Set-DhcpServerv4Scope -ScopeId $ScopeStartAddress -LeaseDuration $LeaseDuration
-} catch {
+}
+catch {
     Write-Error $_.Exception.Message
     Exit 1
 }
@@ -67,7 +70,8 @@ try {
 # Ajout d'une plage d'adresses IP exclues
 try {
     Add-DhcpServerv4ExclusionRange -ScopeId $ScopeStartAddress -StartRange $ExclusionRangeBegin -EndRange $ExclusionRangeEnd
-} catch {
+}
+catch {
     Write-Error $_.Exception.Message
     Exit 1
 }
@@ -77,7 +81,26 @@ try {
 try {
     Backup-DhcpServer -Path "$env:USERPROFILE\Documents\DHCP_Backup"
     Write-Output "La sauvegarde de la base de données DHCP a été effectuée avec succès"
-} catch {
+}
+catch {
     Write-Error "La sauvegarde de la base de données DHCP a échoué : $_.Exception.message"
+    Exit 1
+}
+
+
+# Confirmation de la configuration
+try{
+    $scopeConfig = Get-DhcpServerv4Scope -ScopeId $ScopeStartAddress
+    Write-Output "Configuration du serveur DHCP terminée avec succès :"
+    Write-Output "Nom de l'étendue     : $($scopeConfig.Name)"
+    Write-Output "Plage d'adresse : $($scopeConfig.StartRange) à $($scopeConfig.EndRange)"
+    Write-Output "Masque de sous-réseau  : $($scopeConfig.SubnetMask)"
+    Write-Output "Passerelle par défaut : $DefaultGateway"
+    Write-Output "Serveurs DNS : $PrimaryDNSServer, $SecondaryDNSServer"
+    Write-Output "Durée de bail : $($LeaseDuration.ToString())"
+    Write-Output "Plage d'exclusion : $ExclusionRangeBegin à $ExclusionRangeEnd"
+    Write-Output "Nom de domaine DNS : $DnsDomainName"
+} catch {
+    Write-Error "Impossible d'afficher la configuration du serveur DHCP : $_.Exception.message"
     Exit 1
 }
