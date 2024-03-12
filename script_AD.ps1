@@ -45,9 +45,13 @@ for ($i = 1; $i -le 10; $i++) {
     $userName = "User$i"
     $userPassword = ConvertTo-SecureString -String "M02p@ss3$i" -AsPlainText -Force
     $newUser = New-ADUser -Name $userName -AccountPassword $userPassword -UserPrincipalName $userPrincipal -Enabled $true -PassThru
+
+    # Ajouter l'utilisateur au groupe "Administateurs du domaine"
+    Add-ADPrincipalGroupMembership -Identity $newUser -Members "Administrateur du domaine"
+
+    # Déplacer l'utilisateur vers l'OU "PC-Clients"
+    Move-ADObject -Identity $newUser -TargetPath "OU=PC-Clients" + ($domainName
+     -split '\.',2) [1].Replace('.','=')
 }
 
-
-# Ajouter l'utilisateur au groupe "Administateurs du domaine"
-Add-ADPrincipalGroupMembership -Identity $newUser -Members "Administrateur du domaine"
 
