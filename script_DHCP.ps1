@@ -71,3 +71,13 @@ try {
     Write-Error $_.Exception.Message
     Exit 1
 }
+
+
+# Sauvegarde de la base de données DHCP
+try {
+    Backup-DhcpServer -Path "$env:USERPROFILE\Documents\DHCP_Backup"
+    Write-Output "La sauvegarde de la base de données DHCP a été effectuée avec succès"
+} catch {
+    Write-Error "La sauvegarde de la base de données DHCP a échoué : $_.Exception.message"
+    Exit 1
+}
