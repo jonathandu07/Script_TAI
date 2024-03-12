@@ -7,3 +7,12 @@ Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools -Restart
 Write-Host "Attente du redémarrage du serveur..."
 Start-Sleep -Seconds 30
 
+
+# Renommer le serveur en "SRV-AD"
+Write-Host "Renommage du serveur en SRV-AD..."
+Rename-Computer -NewName "SRV-AD" -Force -Restart
+
+
+# Attendre le redémarrage du serveur
+Write-Host "Attente du redémarrage du serveur..."
+Start-Sleep -Seconds 10
