@@ -47,3 +47,7 @@ for ($i = 1; $i -le 10; $i++) {
     $newUser = New-ADUser -Name $userName -AccountPassword $userPassword -UserPrincipalName $userPrincipal -Enabled $true -PassThru
 }
 
+
+# Ajouter l'utilisateur au groupe "Administateurs du domaine"
+Add-ADPrincipalGroupMembership -Identity $newUser -Members "Administrateur du domaine"
+
