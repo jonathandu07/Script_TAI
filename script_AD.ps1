@@ -16,3 +16,9 @@ Rename-Computer -NewName "SRV-AD" -Force -Restart
 # Attendre le redémarrage du serveur
 Write-Host "Attente du redémarrage du serveur..."
 Start-Sleep -Seconds 10
+
+
+# Définir les paramètres du domaine
+$domainName = "mondomaine.local"
+$adminUserName = "Admin"
+$adminPassword = "M02p@ss3"
