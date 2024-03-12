@@ -25,7 +25,7 @@ if (!(Get-WindowsFeature DHCP -ErrorAction Stop)) {
 
 # Configuration des variables pour la nouvelle étendue DHCP
 $ScopeStartAddress = "192.168.1.50"
-$ScopeEndAdresss = "192.168.1.254"
+$ScopeEndAddresss = "192.168.1.254"
 $ScopeSubnetMask = "255.255.255.0"
 $DefaultGateway = "192.168.1.1"
 $PrimaryDNSServer = "8.8.8.8"
@@ -35,3 +35,11 @@ $ExclusionRangeEnd = "192.168.1.210"
 $DnsDomainName = "exemple.local"
 $ScopeId = @(, $ScopeStartAddress, $ScopeSubnetMask)
 
+
+# Configuration des options d'étendue DHCP
+try {
+    Add-DhcpServerv4Scope -Name "Lan-Scope" -ScopeId $ScopeStartAddress -StartRange $ExclusionRangeBegin -EndRange $ExclusionRangeEnd
+} catch {
+    Write-Error $_.Exception.message
+    Exit 1
+}
