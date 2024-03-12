@@ -47,7 +47,7 @@ for ($i = 1; $i -le 10; $i++) {
     $newUser = New-ADUser -Name $userName -AccountPassword $userPassword -UserPrincipalName $userPrincipal -Enabled $true -PassThru
 
     # Ajouter l'utilisateur au groupe "Administateurs du domaine"
-    Add-ADPrincipalGroupMembership -Identity $newUser -Members "Administrateur du domaine"
+    Add-ADPrincipalGroupMembership -Identity $newUser -Members "Admins du domaine"
 
     # Déplacer l'utilisateur vers l'OU "PC-Clients"
     Move-ADObject -Identity $newUser -TargetPath "OU=PC-Clients" + ($domainName
@@ -55,3 +55,4 @@ for ($i = 1; $i -le 10; $i++) {
 }
 
 
+Write-Host "La configuration du serveur Active Directory est terminée !"
