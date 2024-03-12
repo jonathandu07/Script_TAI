@@ -53,3 +53,12 @@ try {
     Write-Error $_.Exception.Message
     Exit 1
 }
+
+
+# Configuration de la durée de bail d'adresse IP
+try {
+    Set-DhcpServerv4Scope -ScopeId $ScopeStartAddress -LeaseDuration $LeaseDuration
+} catch {
+    Write-Error $_.Exception.Message
+    Exit 1
+}
