@@ -8,3 +8,12 @@
 **texte en gras**
 
 texte qui n'est pas en gras
+
+
+---
+
+- Point
+
+* Autre point
+
+1. Encore autre point
