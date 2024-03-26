@@ -117,3 +117,8 @@ graph TD;
     K --> L[Assaisonner au goût];
     L --> M[Servir chaud];
 ```
+
+
+---
+
+# [Résumé](#résumé)
