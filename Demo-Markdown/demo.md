@@ -25,3 +25,11 @@ texte qui n'est pas en gras
 ---
 
 ![Capture packet-tracer](./img/capture-Packet-Tracer.png)
+
+---
+
+```cli
+Switch# configure terminal
+Switch(config)# vlan 20
+Switch(config-vlan)# name Gestion
+```
