@@ -17,3 +17,7 @@ texte qui n'est pas en gras
 * Autre point
 
 1. Encore autre point
+
+---
+
+<img src="./img/capture-Packet-Tracer.png" alt="Capture Packet Tracer" width="100%" />
