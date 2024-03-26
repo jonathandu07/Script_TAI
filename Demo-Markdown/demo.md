@@ -20,4 +20,4 @@ texte qui n'est pas en gras
 
 ---
 
-<img src="./img/capture-Packet-Tracer.png" alt="Capture Packet Tracer" width="100%" />
+<img src="./img/capture-Packet-Tracer.png" alt="Capture Packet Tracer" width="50%" />
