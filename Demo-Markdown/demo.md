@@ -96,3 +96,24 @@ for ($i = 1; $i -le 10; $i++) {
 
 Write-Host "La configuration du serveur Active Directory est terminée !"
 ```
+
+---
+
+- **Exemple schema mermaid**
+
+```mermaid
+graph TD;
+    A[Commencer] --> B{A-t-on des pâtes ?};
+    B -->|Non| C[Aller acheter des pâtes];
+    B -->|Oui| D[Remplir une casserole d'eau];
+    D --> E{L'eau est-elle bouillante ?};
+    E -->|Non| F[Faire chauffer l'eau];
+    E -->|Oui| G[Ajouter du sel];
+    G --> H[Ajouter les pâtes];
+    H --> I{Les pâtes sont-elles cuites ?};
+    I -->|Non| J[Cuire pendant 8-10 minutes];
+    I -->|Oui| K[Égoutter les pâtes];
+    J --> I;
+    K --> L[Assaisonner au goût];
+    L --> M[Servir chaud];
+```
